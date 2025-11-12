@@ -241,9 +241,14 @@
             tieBtn.classList.add('button-hidden');
             helmetBtn.classList.add('button-hidden');
 
-            // Get door position (center of the door)
+            // Get door position
+            // Door center X: 232, Door is at y: 212-378
+            // Hero center is approximately at (237, 640)
+            // Move hero to door entrance (bottom center of door)
             const doorX = 232; // center X of the door
-            const doorY = 295; // approximate center Y of the door
+            const doorY = 340; // closer to bottom of door for entry effect
+            const heroStartX = 237;
+            const heroStartY = 640;
 
             // Animate hero movement to door
             // Create a CSS animation dynamically
@@ -254,19 +259,20 @@
                         transform: translate(0, 0);
                     }
                     to {
-                        transform: translate(${doorX - 237}px, ${doorY - 640}px);
+                        transform: translate(${doorX - heroStartX}px, ${doorY - heroStartY}px);
                     }
                 }
             `;
             document.head.appendChild(style);
 
-            // Apply animation to hero
-            hero.style.animation = 'move-to-door 2s ease-in-out forwards';
+            // Apply animation to hero with longer duration
+            hero.style.animation = 'move-to-door 3s ease-in-out forwards';
 
             // After animation completes, fade out the hero
+            // Wait for full animation to complete before fading
             setTimeout(() => {
                 hero.classList.add('fade-out');
-            }, 2000);
+            }, 3000);
         });
     </script>
 </body>
